@@ -6,6 +6,7 @@
 html,
 body {
   scroll-behavior: smooth;
+  overflow-x: hidden !important;
 }
 
 body {
@@ -13,7 +14,6 @@ body {
   padding: 0;
   background-color: #fff;
   color: #07150a;
-  overflow-x: hidden;
 }
 
 img {

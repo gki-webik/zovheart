@@ -5,13 +5,13 @@
 html,
 body {
   scroll-behavior: smooth;
+  overflow-x: hidden !important;
 }
 body {
   margin: 0;
   padding: 0;
   background-color: #fff;
   color: #07150a;
-  overflow-x: hidden;
 }
 
 img {
