@@ -93,7 +93,7 @@ section.main .text h2 {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-weight: 900;
+  font-weight: 900 !important;
   margin: 0;
   padding: 0;
   display: -webkit-box;
@@ -102,6 +102,7 @@ section.main .text h2 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-family: Arial, Helvetica, sans-serif !important;
   text-wrap: nowrap;
   gap: 20px;
 }
@@ -123,6 +124,7 @@ section.main .text h2 {
 @media screen and (max-width: 475px) {
   section.main .text h2 {
     font-size: 37px;
+    margin-top: 10px;
   }
 }
 @media screen and (max-width: 380px) {

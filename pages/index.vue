@@ -1,21 +1,22 @@
 <template>
   <div>
-    <section class="main">
+    <section class="main" itemscope itemtype="http://schema.org/Organization">
       <div class="text">
-        <h1>Благотворительный фонд "Зов Сердца"</h1>
+        <h1 itemprop="name">Благотворительный фонд "Зов&nbsp;Сердца"</h1>
         <h2>
           ЗОВ СЕРДЦА
           <img
             src="/media/images/heart.svg"
             class="is-heart"
             alt="Символ сердца - логотип фонда"
+            itemprop="logo"
           />
         </h2>
         <h3>
           <strong>Россия</strong> – это сила! <br />
           Поддержим наших героев!
         </h3>
-        <p>
+        <p itemprop="description">
           Фонд создан для помощи военнослужащим, мирным жителям и детям. <br />
           Все кто желает быть частичкой нашей команды приглашаем в наш дружный
           коллектив.
@@ -29,9 +30,15 @@
         class="is-main-block"
         alt="Поддержка участников СВО - Благотворительный фонд Зов Сердца"
         loading="eager"
+        itemprop="image"
       />
     </section>
-    <section class="about-us" id="about-us">
+    <section
+      class="about-us"
+      id="about-us"
+      itemscope
+      itemtype="http://schema.org/NGO"
+    >
       <h2>Кто мы такие?</h2>
       <div class="items">
         <div class="item is-1">
@@ -46,7 +53,7 @@
             loading="lazy"
           />
           <div class="text">
-            <p>
+            <p itemprop="description">
               Сегодня наша страна снова столкнулась с вызовом, и наши бойцы с
               честью выполняют свой долг в
               <strong>Специальной Военной Операции (СВО)</strong>.
@@ -78,7 +85,7 @@
             loading="lazy"
           />
           <div class="text">
-            <p>
+            <p itemprop="knowsAbout">
               Здесь мы оказываем поддержку тем, кто на передовой:
               <strong
                 >медикаменты, тактические аптечки, носилки, перевязочные
@@ -93,25 +100,45 @@
         </div>
       </div>
     </section>
-    <section class="requisites" aria-labelledby="requisites-heading">
+    <section
+      class="requisites"
+      id="requisites"
+      aria-labelledby="requisites-heading"
+      itemscope
+      itemtype="http://schema.org/Organization"
+    >
       <div class="left">
         <h2 id="requisites-heading">Наши реквизиты</h2>
         <p>
-          <strong>Полное наименование организации:</strong> Благотворительный
-          фонд поддержки и реализации социально значимых программ и проектов
-          «Зов сердца»
+          <strong>Полное наименование организации:</strong>
+          <span itemprop="legalName"
+            >Благотворительный фонд поддержки и реализации социально значимых
+            программ и проектов «Зов сердца»</span
+          >
         </p>
         <p>
-          <strong>Сокращенное наименование организации:</strong> Фонд «Зов
-          сердца»
+          <strong>Сокращенное наименование организации:</strong>
+          <span itemprop="name">Фонд «Зов сердца»</span>
         </p>
         <p><strong>Действует на основании</strong></p>
-        <p><strong>ОГРН</strong> 1247700418900</p>
         <p>
-          <strong>Юридический адрес:</strong> 127030, г.Москва, ул.
-          Новослободская, д. 20, пом. 26/1/2
+          <strong>ОГРН</strong> <span itemprop="identifier">1247700418900</span>
         </p>
-        <p><strong>ИНН</strong> 9707031578</p>
+        <p>
+          <strong>Юридический адрес:</strong>
+          <span
+            itemprop="address"
+            itemscope
+            itemtype="http://schema.org/PostalAddress"
+          >
+            <span itemprop="postalCode">127030</span>,
+            <span itemprop="addressLocality">г.Москва</span>,
+            <span itemprop="streetAddress"
+              >ул. Новослободская, д. 20, пом. 26/1/2</span
+            >
+          </span>
+        </p>
+        <p><strong>ИНН</strong> <span itemprop="taxID">9707031578</span></p>
         <p><strong>КПП</strong> 770701001</p>
         <p><strong>Расчетный счет</strong> 40703810038000110803</p>
         <p><strong>Корр. Счет</strong> 30101810400000000225</p>
@@ -132,12 +159,18 @@
     </section>
     <section class="media" aria-labelledby="media-heading">
       <h2 id="media-heading">Медиа</h2>
-      <div class="items">
-        <div class="item is-photo">
+      <div class="items" itemscope itemtype="http://schema.org/MediaGallery">
+        <div
+          class="item is-photo"
+          itemprop="associatedMedia"
+          itemscope
+          itemtype="http://schema.org/ImageObject"
+        >
           <img
             src="/media/images/camo.png"
             alt="Фотоматериалы о деятельности фонда Зов Сердца"
             loading="lazy"
+            itemprop="contentUrl"
           />
         </div>
         <div
@@ -146,6 +179,9 @@
           :key="index"
           @mouseover="showButton(index)"
           @mouseleave="hideButton(index)"
+          itemprop="associatedMedia"
+          itemscope
+          itemtype="http://schema.org/VideoObject"
         >
           <video
             :ref="'video' + index"
@@ -155,7 +191,9 @@
             @loadedmetadata="setVideoTime(index)"
             @pause="onVideoPause(index)"
             @play="onVideoPlay(index)"
+            itemprop="contentUrl"
           ></video>
+          <meta itemprop="name" :content="video.ariaLabel" />
           <button
             :ref="'button' + index"
             @click="playVideo(index)"
@@ -164,18 +202,30 @@
             v-html="buttonPlay"
           ></button>
         </div>
-        <div class="item is-photo">
+        <div
+          class="item is-photo"
+          itemprop="associatedMedia"
+          itemscope
+          itemtype="http://schema.org/ImageObject"
+        >
           <img
             src="/media/images/camo.png"
             alt="Фотоотчет о помощи военнослужащим"
             loading="lazy"
+            itemprop="contentUrl"
           />
         </div>
-        <div class="item is-photo">
+        <div
+          class="item is-photo"
+          itemprop="associatedMedia"
+          itemscope
+          itemtype="http://schema.org/ImageObject"
+        >
           <img
             src="/media/images/camo.png"
             alt="Фотографии с мероприятий фонда"
             loading="lazy"
+            itemprop="contentUrl"
           />
         </div>
       </div>
@@ -192,6 +242,7 @@
           target="_blank"
           rel="noopener"
           title="Перейти в Telegram канал фонда Зов Сердца"
+          itemprop="sameAs"
           >Вступить</a
         >
       </div>
@@ -201,12 +252,23 @@
         loading="lazy"
       />
     </section>
-    <section class="help" aria-labelledby="feedback-heading">
+    <section class="help" id="feedback" aria-labelledby="feedback-heading">
       <div class="left">
         <h2 id="feedback-heading">Обратная связь</h2>
         <p>Остались вопросы? Напиши нам через форму обратной связи!</p>
-        <form action="" method="post">
-          <input type="text" placeholder="Имя" aria-label="Ваше имя" required />
+        <form
+          action=""
+          method="post"
+          itemscope
+          itemtype="http://schema.org/ContactPoint"
+        >
+          <input
+            type="text"
+            placeholder="Имя"
+            aria-label="Ваше имя"
+            required
+            itemprop="name"
+          />
           <input
             type="text"
             placeholder="Тема"
@@ -218,6 +280,7 @@
             placeholder="Email"
             aria-label="Ваш email"
             required
+            itemprop="email"
           />
           <textarea
             placeholder="Сообщение"
@@ -235,79 +298,99 @@
         />
       </div>
     </section>
-    <section class="info_sponsorship" aria-labelledby="sponsors-heading">
-      <h2 id="sponsors-heading">Информация для Спонсоров</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt
-        ex justo, eu pharetra lorem dignissim sit amet. Suspendisse ullamcorper
-        magna vel sapien interdum, eget porttitor tellus tincidunt. Nunc ut
-        imperdiet nibh, nec ultrices metus. Sed vitae ultricies dolor. Aenean et
-        fermentum quam. Sed eleifend in enim quis malesuada. Aenean augue
-        tellus, elementum id auctor vel, tempor eget eros. Nullam finibus orci
-        sed urna ultricies, at lacinia mauris tempor. Phasellus augue lectus,
-        convallis in nibh id, placerat malesuada arcu. Quisque nunc ligula,
-        facilisis nec nisl ut, vestibulum cursus justo. Donec sed eros
-        hendrerit, iaculis ante dictum, consectetur nisl. Nullam non magna mi.
-        Nunc iaculis rutrum orci, eu consequat arcu varius sed. Nunc at nunc a
-        erat dignissim hendrerit.
-      </p>
-      <p>
-        Sed justo arcu, volutpat et magna in, fermentum efficitur dui. Morbi
-        vitae est ac dolor vestibulum fringilla sed dictum orci. Curabitur
-        vulputate mauris at eros laoreet semper. Sed hendrerit leo in congue
-        pharetra. Curabitur aliquam, quam vitae tincidunt condimentum, eros
-        justo volutpat diam, in cursus leo turpis at odio. Etiam suscipit
-        vulputate mollis. Interdum et malesuada fames ac ante ipsum primis in
-        faucibus. Praesent nunc nisi, laoreet eget massa quis, tincidunt posuere
-        nunc.
-      </p>
-      <p>
-        Mauris quis sapien cursus, convallis purus vel, imperdiet ante.
-        Phasellus eget dolor sed eros vulputate gravida nec non ante. In hac
-        habitasse platea dictumst. Integer nunc eros, sagittis sed nulla in,
-        euismod viverra risus. Aenean feugiat elit vestibulum justo auctor
-        dignissim. Morbi id varius nisl. Pellentesque at dolor varius, aliquam
-        urna et, semper nulla. Pellentesque odio quam, mollis ac lectus et,
-        rhoncus volutpat neque. Ut eget massa volutpat, imperdiet justo at,
-        molestie elit. Sed vel laoreet magna.
-      </p>
+    <section
+      class="info_sponsorship"
+      id="sponsors"
+      aria-labelledby="sponsors-heading"
+      itemscope
+      itemtype="http://schema.org/Article"
+    >
+      <h2 id="sponsors-heading" itemprop="headline">
+        Информация для Спонсоров
+      </h2>
+      <div itemprop="articleBody">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+          tincidunt ex justo, eu pharetra lorem dignissim sit amet. Suspendisse
+          ullamcorper magna vel sapien interdum, eget porttitor tellus
+          tincidunt. Nunc ut imperdiet nibh, nec ultrices metus. Sed vitae
+          ultricies dolor. Aenean et fermentum quam. Sed eleifend in enim quis
+          malesuada. Aenean augue tellus, elementum id auctor vel, tempor eget
+          eros. Nullam finibus orci sed urna ultricies, at lacinia mauris
+          tempor. Phasellus augue lectus, convallis in nibh id, placerat
+          malesuada arcu. Quisque nunc ligula, facilisis nec nisl ut, vestibulum
+          cursus justo. Donec sed eros hendrerit, iaculis ante dictum,
+          consectetur nisl. Nullam non magna mi. Nunc iaculis rutrum orci, eu
+          consequat arcu varius sed. Nunc at nunc a erat dignissim hendrerit.
+        </p>
+        <p>
+          Sed justo arcu, volutpat et magna in, fermentum efficitur dui. Morbi
+          vitae est ac dolor vestibulum fringilla sed dictum orci. Curabitur
+          vulputate mauris at eros laoreet semper. Sed hendrerit leo in congue
+          pharetra. Curabitur aliquam, quam vitae tincidunt condimentum, eros
+          justo volutpat diam, in cursus leo turpis at odio. Etiam suscipit
+          vulputate mollis. Interdum et malesuada fames ac ante ipsum primis in
+          faucibus. Praesent nunc nisi, laoreet eget massa quis, tincidunt
+          posuere nunc.
+        </p>
+        <p>
+          Mauris quis sapien cursus, convallis purus vel, imperdiet ante.
+          Phasellus eget dolor sed eros vulputate gravida nec non ante. In hac
+          habitasse platea dictumst. Integer nunc eros, sagittis sed nulla in,
+          euismod viverra risus. Aenean feugiat elit vestibulum justo auctor
+          dignissim. Morbi id varius nisl. Pellentesque at dolor varius, aliquam
+          urna et, semper nulla. Pellentesque odio quam, mollis ac lectus et,
+          rhoncus volutpat neque. Ut eget massa volutpat, imperdiet justo at,
+          molestie elit. Sed vel laoreet magna.
+        </p>
+      </div>
     </section>
-    <section class="info_volunteer" aria-labelledby="volunteers-heading">
-      <h2 id="volunteers-heading">Информация для Волонтеров</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt
-        ex justo, eu pharetra lorem dignissim sit amet. Suspendisse ullamcorper
-        magna vel sapien interdum, eget porttitor tellus tincidunt. Nunc ut
-        imperdiet nibh, nec ultrices metus. Sed vitae ultricies dolor. Aenean et
-        fermentum quam. Sed eleifend in enim quis malesuada. Aenean augue
-        tellus, elementum id auctor vel, tempor eget eros. Nullam finibus orci
-        sed urna ultricies, at lacinia mauris tempor. Phasellus augue lectus,
-        convallis in nibh id, placerat malesuada arcu. Quisque nunc ligula,
-        facilisis nec nisl ut, vestibulum cursus justo. Donec sed eros
-        hendrerit, iaculis ante dictum, consectetur nisl. Nullam non magna mi.
-        Nunc iaculis rutrum orci, eu consequat arcu varius sed. Nunc at nunc a
-        erat dignissim hendrerit.
-      </p>
-      <p>
-        Sed justo arcu, volutpat et magna in, fermentum efficitur dui. Morbi
-        vitae est ac dolor vestibulum fringilla sed dictum orci. Curabitur
-        vulputate mauris at eros laoreet semper. Sed hendrerit leo in congue
-        pharetra. Curabitur aliquam, quam vitae tincidunt condimentum, eros
-        justo volutpat diam, in cursus leo turpis at odio. Etiam suscipit
-        vulputate mollis. Interdum et malesuada fames ac ante ipsum primis in
-        faucibus. Praesent nunc nisi, laoreet eget massa quis, tincidunt posuere
-        nunc.
-      </p>
-      <p>
-        Mauris quis sapien cursus, convallis purus vel, imperdiet ante.
-        Phasellus eget dolor sed eros vulputate gravida nec non ante. In hac
-        habitasse platea dictumst. Integer nunc eros, sagittis sed nulla in,
-        euismod viverra risus. Aenean feugiat elit vestibulum justo auctor
-        dignissim. Morbi id varius nisl. Pellentesque at dolor varius, aliquam
-        urna et, semper nulla. Pellentesque odio quam, mollis ac lectus et,
-        rhoncus volutpat neque. Ut eget massa volutpat, imperdiet justo at,
-        molestie elit. Sed vel laoreet magna.
-      </p>
+    <section
+      class="info_volunteer"
+      id="volunteers"
+      aria-labelledby="volunteers-heading"
+      itemscope
+      itemtype="http://schema.org/Article"
+    >
+      <h2 id="volunteers-heading" itemprop="headline">
+        Информация для Волонтеров
+      </h2>
+      <div itemprop="articleBody">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+          tincidunt ex justo, eu pharetra lorem dignissim sit amet. Suspendisse
+          ullamcorper magna vel sapien interdum, eget porttitor tellus
+          tincidunt. Nunc ut imperdiet nibh, nec ultrices metus. Sed vitae
+          ultricies dolor. Aenean et fermentum quam. Sed eleifend in enim quis
+          malesuada. Aenean augue tellus, elementum id auctor vel, tempor eget
+          eros. Nullam finibus orci sed urna ultricies, at lacinia mauris
+          tempor. Phasellus augue lectus, convallis in nibh id, placerat
+          malesuada arcu. Quisque nunc ligula, facilisis nec nisl ut, vestibulum
+          cursus justo. Donec sed eros hendrerit, iaculis ante dictum,
+          consectetur nisl. Nullam non magna mi. Nunc iaculis rutrum orci, eu
+          consequat arcu varius sed. Nunc at nunc a erat dignissim hendrerit.
+        </p>
+        <p>
+          Sed justo arcu, volutpat et magna in, fermentum efficitur dui. Morbi
+          vitae est ac dolor vestibulum fringilla sed dictum orci. Curabitur
+          vulputate mauris at eros laoreet semper. Sed hendrerit leo in congue
+          pharetra. Curabitur aliquam, quam vitae tincidunt condimentum, eros
+          justo volutpat diam, in cursus leo turpis at odio. Etiam suscipit
+          vulputate mollis. Interdum et malesuada fames ac ante ipsum primis in
+          faucibus. Praesent nunc nisi, laoreet eget massa quis, tincidunt
+          posuere nunc.
+        </p>
+        <p>
+          Mauris quis sapien cursus, convallis purus vel, imperdiet ante.
+          Phasellus eget dolor sed eros vulputate gravida nec non ante. In hac
+          habitasse platea dictumst. Integer nunc eros, sagittis sed nulla in,
+          euismod viverra risus. Aenean feugiat elit vestibulum justo auctor
+          dignissim. Morbi id varius nisl. Pellentesque at dolor varius, aliquam
+          urna et, semper nulla. Pellentesque odio quam, mollis ac lectus et,
+          rhoncus volutpat neque. Ut eget massa volutpat, imperdiet justo at,
+          molestie elit. Sed vel laoreet magna.
+        </p>
+      </div>
     </section>
   </div>
 </template>
@@ -386,7 +469,6 @@ export default {
     setVideoTime(index) {
       const video = this.getVideoRef(index);
       if (video) {
-        // Устанавливаем время воспроизведения на 1 секунду
         video.currentTime = 1;
       }
     },
