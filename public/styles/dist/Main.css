@@ -10,6 +10,7 @@ section.main {
           align-items: center;
   min-height: calc(100vh - 65px);
   overflow: hidden;
+  position: relative;
 }
 section.main img.is-main-block {
   height: 100%;

@@ -5,6 +5,7 @@ section {
     align-items: center;
     min-height: calc(100vh - 65px);
     overflow: hidden;
+    position: relative;
     img.is-main-block {
       height: 100%;
       max-height: calc(100vh - 65px);
